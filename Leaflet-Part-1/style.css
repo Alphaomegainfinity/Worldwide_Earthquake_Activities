@@ -10,3 +10,24 @@ body,
 html {
   height: 100%;
 }
+
+.square {
+  min-height: 20px;
+  max-height: 20px;
+  min-width: 30px;
+  max-width: 30px;
+}
+.legend {
+  line-height: 22px;
+  color: black;
+  text-align: center;
+  vertical-align: auto;
+  background-color: whitesmoke;
+}
+.legend i {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-left: 8px;
+  opacity: 0.8;
+}
