@@ -12,10 +12,10 @@ html {
 }
 
 .square {
-  min-height: 20px;
-  max-height: 20px;
-  min-width: 30px;
-  max-width: 30px;
+  min-height: 10px;
+  max-height: 10px;
+  min-width: 10px;
+  max-width: 10px;
 }
 .legend {
   line-height: 22px;
