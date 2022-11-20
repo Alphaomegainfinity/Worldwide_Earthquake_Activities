@@ -5,10 +5,31 @@ let queryUrl =
 // Add the 2nd url dataset from https://github.com/fraxen/tectonicplates
 let tetonicplateUrl = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
 
+// create 2 new separate layergroups
+let earthquakes = new L.LayerGroup();
+let tetonic = new L.LayerGroup();
+
 // Perform a GET request to the query URL/
-d3.json(queryUrl).then(function (data) {
+d3.json(queryUrl, function(data) {
   // Once we get a response, send the data.features object to the createFeatures function.
-  createFeatures(data.features);
+  function markerSize (mag) {
+    if (mag === 0) {
+      return 1;
+    }
+    return mag * 3;
+  }
+});
+
+// Perform a GET request to the tetonicplate URL
+d3.json(tetonicplateUrl, function(plateData) {
+  // Once we get a response, send the data.features object to the createFeatures function.
+  L.geoJson(plateData, {
+    color: "#dc1414",
+    weight: 2
+// Add plateData to LayerGroups 
+}).addTo(tectonic);
+// Add tectonic Layer to the Map
+tectonic.addTo(myMap);
 });
 
 function magColors(mag) {
@@ -25,31 +46,23 @@ function magColors(mag) {
     : "#E2FFAE";
 }
 
-function circle_marker(feature, latlng) {
-  let options = {
-    radius: feature.properties.mag * 5,
+function circle_marker(feature) {
+  return {
+    radius: markerSize(feature.properties.mag),
     fillColor: magColors(feature.properties.mag),
     color: magColors(feature.properties.mag),
     weight: 1,
     opacity: 0.8,
-    fillOpacity: 0.35,
+    fillOpacity: 0.8,
+    stroke: true,
   };
-  return L.circleMarker(latlng, options);
 }
 
 function onEachFeature(feature, layer) {
-  if (feature.properties.mag < 1) {
-    return layer.setRadius(5);
-  } else if (feature.properties.mag < 2.5) {
-    return layer.setRadius(10);
-  } else if (feature.properties.mag < 4) {
-    return layer.setRadius(15);
-  } else if (feature.properties.mag < 5.5) {
-    return layer.setRadius(20);
-  } else if (feature.properties.mag < 7) {
-    return layer.setRadius(25);
-  } else layer.setRadius(100);
-}
+  layer.bindPopup("<h4>Place: " + feature.properties.place + 
+            "</h4><hr><p>Date: " + new Date(feature.properties.time) + 
+            "</p><hr><p>Magnitude: " + (feature.properties.mag) + "</p>");
+        }
 
 function createFeatures(earthquakeData) {
   // Define a function that we want to run once for each feature in the features array.
@@ -66,9 +79,11 @@ function createFeatures(earthquakeData) {
   let earthquakes = L.geoJSON(earthquakeData, {
     onEachFeature: onEachFeature,
     pointToLayer: circle_marker,
-  });
+  })
   // Send our earthquakes layer to the createMap function/
-  createMap(earthquakes);
+  .addTo(earthquakes);
+    // Add earthquakes Layer to the Map
+    earthquakes.addTo(myMap);
 }
 
 function createMap(earthquakes) {
@@ -95,6 +110,7 @@ function createMap(earthquakes) {
   // Create an overlay object to hold our overlay.
   let overlayMaps = {
     Earthquakes: earthquakes,
+    "Fault Lines": tetonic,
   };
 
   // Create our map, giving it the streetmap and earthquakes layers to display on load.
@@ -109,7 +125,7 @@ function createMap(earthquakes) {
   // Add the layer control to the map.
   L.control
     .layers(baseMaps, overlayMaps, {
-      collapsed: false,
+      collapsed: true,
     })
     .addTo(myMap);
 
