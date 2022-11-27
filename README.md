@@ -1,44 +1,23 @@
-# leaflet-challenge
+![plot](./image/2560px-USGS_logo_green.png)
+
+# Earthquake Geomapping and visualizing Data with Leaflet
 
 #### https://alphaomegainfinity.github.io/Worldwide_Earthquake_Activities/
 
-Background
+## Background
 The United States Geological Survey, or USGS for short, is responsible for providing scientific data about natural hazards, the health of our ecosystems and environment, and the impacts of climate and land-use change. Their scientists develop new methods and tools to supply timely, relevant, and useful information about the Earth and its processes.
 
 The USGS is interested in building a new set of tools that will allow them to visualise their earthquake data. They collect a massive amount of data from all over the world each day, but they lack a meaningful way of displaying it. In this challenge, you have been tasked with developing a way to visualise USGS data that will allow them to better educate the public and other government organisations (and hopefully secure more funding) on issues facing our planet.
 
-Before You Begin
-Create a new repository for this project called leaflet-challenge. Do not add this Challenge to an existing repository.
 
-Clone the new repository to your computer.
-
-Inside your local git repository, create a directory for the Leaflet challenge. Use the folder names to correspond to the challenges: Leaflet-Part-1 and Leaflet-Part-2.
-
-This Challenge uses both HTML and JavaScript, so be sure to add all the necessary files. These will be the main files to run for analysis.
-
-Push the above changes to GitHub.
-
-Instructions
-The instructions for this activity are broken into two parts:
-
-Part 1: Create the Earthquake Visualisation
-
-Part 2: Gather and Plot More Data (Optional)
-
-Part 1: Create the Earthquake Visualisation
+### Part 1: Create the Earthquake Visualisation
 2-BasicMap
-
-Your first task is to visualise an earthquake dataset. Complete the following steps:
-
-Get your dataset. To do so, follow these steps:
 
 The USGS provides earthquake data in a number of different formats, updated every 5 minutes. Visit the USGS GeoJSON Feed Links to an external site.page and choose a dataset to visualise. The following image is an example screenshot of what appears when you visit this link:
 3-Data
 
 When you click a dataset (such as "All Earthquakes from the Past 7 Days"), you will be given a JSON representation of that data. Use the URL of this JSON to pull in the data for the visualisation. The following image is a sampling of earthquake data in JSON format:
 4-JSON
-
-Import and visualise the data by doing the following:
 
 Using Leaflet, create a map that plots all the earthquakes from your dataset based on their longitude and latitude.
 
@@ -50,7 +29,7 @@ Include popups that provide additional information about the earthquake when its
 
 Create a legend that will provide context for your map data.
 
-Your visualisation should look something like the preceding map.
+![plot](./image/streetMap.png)
 
 Part 2: Gather and Plot More Data (Optional)
 Plot a second dataset on your map to illustrate the relationship between tectonic plates and seismic activity. You will need to pull in this dataset and visualise it alongside your original data. Data on tectonic plates can be found at https://github.com/fraxen/tectonicplates Links to an external site..
