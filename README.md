@@ -29,7 +29,7 @@ Include popups that provide additional information about the earthquake when its
 
 Create a legend that will provide context for your map data.
 
-![plot](./images/streetMap.png)
+![plot](./images/streetMap.PNG)
 
 Part 2: Gather and Plot More Data (Optional)
 Plot a second dataset on your map to illustrate the relationship between tectonic plates and seismic activity. You will need to pull in this dataset and visualise it alongside your original data. Data on tectonic plates can be found at https://github.com/fraxen/tectonicplates Links to an external site..
